@@ -11,6 +11,12 @@ class PlaceImage(models.Model):
     def __unicode__(self):
         return self.image.name
 
+    def save(self):
+        self.height = self.image.height
+        self.width = self.image.width
+        self.aspect_ratio = float(self.image.height)/self.image.width
+        return super(PlaceImage,self).save()
+
     @classmethod
     def fetch_image(cls,width,height):
         return random.sample(PlaceImage.objects.all(),1)[0]
