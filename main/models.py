@@ -28,7 +28,7 @@ class PlaceImage(models.Model):
 
     @classmethod
     def _calculate_aspect_ratio(cls,width,height):
-        real_aspect_ratio = float(height)/width
+        real_aspect_ratio = float(width)/int(height)
         diff_aspect_ratios = [abs(x-real_aspect_ratio) for x in STANDARD_ASPECT_RATIOS]
         best_index = diff_aspect_ratios.index(min(diff_aspect_ratios))
         return STANDARD_ASPECT_RATIOS[best_index]
