@@ -24,7 +24,7 @@ class PlaceImage(models.Model):
     @classmethod
     def fetch_image(cls,width,height):
         aspect_ratio = cls._calculate_aspect_ratio(width,height)
-        query = cls.objects.filter(aspect_ratio=aspect_ratio)
+        query = cls.objects.filter(aspect_ratio=str(aspect_ratio))
         if not query.exists():
             query = cls.objects.all()
         return random.sample(query,1)[0]
